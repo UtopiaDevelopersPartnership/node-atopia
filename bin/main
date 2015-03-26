@@ -5,7 +5,6 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('Utopia:server');
 var http = require('http');
 
 require('../application/blockchain_rpc');
@@ -89,5 +88,4 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     console.log("Listening on " + bind);
-    debug('Listening on ' + bind);
 }

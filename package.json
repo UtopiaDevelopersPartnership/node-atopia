@@ -1,15 +1,45 @@
 {
   "name": "Utopia",
-  "version": "0.0.0",
+  "namespace": "project_utopia",
+  "description": "Middle layer between minecraft server and blockchain client.",
+  "version": "0.0.1",
   "private": false,
+  "main": "./bin/main.js",
   "scripts": {
-    "start": "node ./bin/main"
+    "start": "node ./bin/main",
+    "test": "mocha"
   },
   "dependencies": {
-    "debug": "~2.1.1",
     "express": "~4.12.2",
     "jade": "~1.9.2",
-    "ws": "*",
-    "ethereum.js" : "*"
-  }
+    "nconf": "*"
+  },
+  "directories": {
+    "application": "./application"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UtopiaDevelopersPartnership/node-atopia"
+  },
+  "homepage": "https://github.com/UtopiaDevelopersPartnership/node-atopia",
+  "bugs": {
+    "url": "https://github.com/UtopiaDevelopersPartnership/node-atopia/issues"
+  },
+  "keywords": [
+    "atopia",
+    "blockchain",
+    "eris",
+    "javascript",
+    "node.js",
+    "minecraft"
+  ],
+  "author": "AndreasEris",
+  "authors": [
+    {
+      "name": "Andreas Olofsson",
+      "email": "andreas@erisindustries.com",
+      "url": "http://jamtlandoutdoors.se"
+    }
+  ],
+  "license": "LGPL-3.0"
 }
