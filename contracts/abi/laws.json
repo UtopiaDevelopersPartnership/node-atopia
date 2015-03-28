@@ -1,0 +1,199 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "tail",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "creator",
+        "type": "bytes32"
+      },
+      {
+        "name": "posX",
+        "type": "uint256"
+      },
+      {
+        "name": "posZ",
+        "type": "uint256"
+      },
+      {
+        "name": "radius",
+        "type": "uint256"
+      }
+    ],
+    "name": "addLaw",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bool"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "creatorIn",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getLaw",
+    "outputs": [
+      {
+        "name": "creator",
+        "type": "bytes32"
+      },
+      {
+        "name": "posX",
+        "type": "uint256"
+      },
+      {
+        "name": "posZ",
+        "type": "uint256"
+      },
+      {
+        "name": "radius",
+        "type": "uint256"
+      },
+      {
+        "name": "timeStamp",
+        "type": "uint256"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "creatorIn",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getElement",
+    "outputs": [
+      {
+        "name": "prev",
+        "type": "bytes32"
+      },
+      {
+        "name": "next",
+        "type": "bytes32"
+      },
+      {
+        "name": "creator",
+        "type": "bytes32"
+      },
+      {
+        "name": "posX",
+        "type": "uint256"
+      },
+      {
+        "name": "posZ",
+        "type": "uint256"
+      },
+      {
+        "name": "radius",
+        "type": "uint256"
+      },
+      {
+        "name": "timeStamp",
+        "type": "uint256"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "head",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "size",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "remove",
+    "outputs": [],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "creator",
+        "type": "bytes32"
+      }
+    ],
+    "name": "removeLaw",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bool"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "creator",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "code",
+        "type": "uint16"
+      }
+    ],
+    "name": "AddLaw",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "creator",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "code",
+        "type": "uint16"
+      }
+    ],
+    "name": "RemoveLaw",
+    "type": "event"
+  }
+]

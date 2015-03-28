@@ -1,0 +1,14 @@
+{
+  "contracts": [
+    {
+      "name": "pevents",
+      "address": "0x273b997e1b2cc7f3e598e9c1214d9e7bc1b8be75",
+      "abi": true
+    },
+    {
+      "name": "laws",
+      "address": "0x02ffb811d273c4514aec0ade374372d841bdf800",
+      "abi": true
+    }
+  ]
+}

@@ -25,10 +25,45 @@ handlers["server_echo"] = function(req, callback){
 handlers["playerEvents_register"] = function(req, callback){
     var params = req.params;
     if(params.length !== 2 || typeof params[0] !== "string" || typeof params[1] !== "string"){
-        return getErrResponse(req.id, INVALID_PARAMS, "Params not an array with two string entries.");
+        callback(getErrResponse(req.id, INVALID_PARAMS, "Params not an array [string, string]."));
     }
-    var result = bc.registerPlayerEvent(params[0],params[1]);
-    callback(getResponse(req.method, {userName: params[0], eventType: params[1]}));
+    bc.registerPlayerEvent(params[0],params[1], function(status){
+        if(status !== '201'){
+            callback(getErrResponse(req.id, INTERNAL_ERROR, "Failed to add player event to contract. Status: " + status));
+        } else {
+            callback(getResponse(req.method, {userName: params[0], eventType: params[1]}));
+        }
+    });
+
+};
+
+handlers["laws_create"] = function(req, callback){
+    var params = req.params;
+    if(params.length !== 4 || typeof params[0] !== "string" || typeof params[1] !== "number" ||
+        typeof params[2] !== "number" || typeof params[3] !== "number" ){
+        callback(getErrResponse(req.id, INVALID_PARAMS, "Params not an array [string, number, number, number]."));
+    }
+    bc.createLaw(params[0],params[1],params[2],params[3], function(status){
+        if(status !== "201"){
+            callback(getErrResponse(req.id, INTERNAL_ERROR, "Failed to add law to contract. Status: " + status));
+        } else {
+            callback(getResponse(req.method, {creator: params[0], posX: params[1], posZ: params[2], radius: params[3]}));
+        }
+    });
+};
+
+handlers["laws_abandon"] = function(req, callback){
+    var params = req.params;
+    if(params.length !== 1 || typeof params[0] !== "string"){
+        callback(getErrResponse(req.id, INVALID_PARAMS, "Params not an array [string]."));
+    }
+    bc.abandonLaw(params[0], function(status){
+        if(status !== "200"){
+            callback(getErrResponse(req.id, INTERNAL_ERROR, "Failed to abandon law. Status: " + status));
+        } else {
+            callback(getResponse(req.method, {creator: params[0]}));
+        }
+    });
 };
 
 wss.on('connection', function connection(ws) {
@@ -52,7 +87,8 @@ wss.on('connection', function connection(ws) {
                 }
             }
         } catch (err) {
-            response = getErrResponse(-1, PARSE_ERROR, "Request could not be parsed: " + msg)
+            console.log(err);
+            response = getErrResponse(-1, PARSE_ERROR, "Request could not be parsed: " + msg);
         }
         if (response !== "") {
             console.log("Response: " + response);
@@ -61,7 +97,6 @@ wss.on('connection', function connection(ws) {
     });
     console.log("Websocketing");
 });
-
 
 function validateRequest(request){
     return  typeof request.id === "number" &&

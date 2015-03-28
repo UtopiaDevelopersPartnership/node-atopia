@@ -10,7 +10,8 @@ contract PlayerEvents {
     }
 
     address owner;
-    EventData[] eventLog;
+    uint public logIndex;
+    mapping(uint => EventData) eventLog;
 
     // When adding a contract.
     event EventRegistered(bytes32 indexed userName, bytes32 indexed eventType, uint16 indexed code);
@@ -20,6 +21,8 @@ contract PlayerEvents {
         owner = msg.sender;
     }
 
+    // Json annotation to tie the contract to an event.
+    // $${"name":"register", "type":"event", "value":"EventRegistered"}$$
     /// @notice Add an event.
     /// @param userName The user name.
     /// @param eventType The event type.
@@ -33,25 +36,19 @@ contract PlayerEvents {
             return false;
         }
 
-        EventData data = eventLog[eventLog.length];
+        EventData data = eventLog[logIndex++];
         data.userName = userName;
         data.eventType = eventType;
         data.timeStamp = now;
+
         EventRegistered(userName, eventType, 201);
         return true;
-    }
-
-    /// @notice Remove (suicide) the player events contract.
-    function remove(){
-        if(msg.sender == owner){
-            suicide(owner);
-        }
     }
 
     /// @notice Get the log entry at 'index'. Will return empty values if index is out of
     /// bounds.
     function getLogEntry(uint index) constant returns (bytes32 userName, bytes32 eventType, uint timeStamp){
-        if(eventLog.length <= index){
+        if(logIndex <= index){
             return;
         }
         EventData data = eventLog[index];
@@ -61,9 +58,11 @@ contract PlayerEvents {
         return;
     }
 
-    /// @notice Get the size of the events list.
-    function getLogSize() constant returns (uint logSize){
-        return eventLog.length;
+    /// @notice Remove (suicide) the contract.
+    function remove(){
+        if(msg.sender == owner){
+            suicide(owner);
+        }
     }
 
 }

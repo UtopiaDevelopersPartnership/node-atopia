@@ -1,0 +1,89 @@
+[
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "userName",
+        "type": "bytes32"
+      },
+      {
+        "name": "eventType",
+        "type": "bytes32"
+      }
+    ],
+    "name": "register",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bool"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "remove",
+    "outputs": [],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getLogEntry",
+    "outputs": [
+      {
+        "name": "userName",
+        "type": "bytes32"
+      },
+      {
+        "name": "eventType",
+        "type": "bytes32"
+      },
+      {
+        "name": "timeStamp",
+        "type": "uint256"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "logIndex",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "userName",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "eventType",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "code",
+        "type": "uint16"
+      }
+    ],
+    "name": "EventRegistered",
+    "type": "event"
+  }
+]
